@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 1190px;height:500px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+        title: {
+            text: '未来一周天气',
+            subtext:'纯属虚构',
+            x:'left',
+            y:'top',
+            textStyle:{
+                fontSize:14,
+                color:'#f93a3a',
+                fontWeight:'400',
+                fontFamily:'微软雅黑'
+            },
+            subtextStyle:{
+                fontSize:10,
+                color:'#666',
+                fontWeight:'400',
+                fontFamily:'微软雅黑'
+            }
+        },
+        tooltip: {
+            backgroundColor:'rbag(0,0,0,0.6)',
+            borderColor:'#ccc',
+            borderWidth:'1',
+            borderRadius:'2',
+            textStyle:'#666',
+            trigger: 'axis'
+        },
+        legend: {
+            data:[{
+                name :'销量',
+                textStyle :{
+                    fontSize:'10',
+                    color:'#e4393c'
+                }
+            }],
+            backgroundColor:'#ccc',
+            color:'#e4393c',
+            x:'right',
+            y:'30'
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {
+                    show : true,
+                    title : {
+                        mark : '辅助线开关',
+                        markUndo : '删除辅助线',
+                        markClear : '清空辅助线'
+                    },
+                    lineStyle : {
+                        width : 2,
+                        color : '#1e90ff',
+                        type : 'dashed'
+                    }
+                },
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            },
+            textStyle:{
+                    fontSize:14,
+                    color:'#f93a3a',
+                    fontWeight:'400',
+                    fontFamily:'微软雅黑'
+            }
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],
+            name:'类型',
+            nameTextStyle:{
+                fontSize:'14',
+                color:'red'
+            },
+            axisTick:{
+                show:true,
+                inside:true,
+                length:'2',
+                lineStyle:{
+                    color:'red',
+                    width:'10'
+                }
+            }
+        },
+        yAxis: {
+            type : 'value',
+            name:'温度',
+            max:'1000',
+            axisTick:{
+                show:true,
+                inside:true,
+                length:'2',
+                lineStyle:{
+                    color:'red',
+                    width:'10'
+                }
+            },
+            axisLabel:{
+                show:true,
+                formatter:'{value} °C',
+                textStyle:{
+                    color:"#e4393c"
+                }
+            }
+        },
+        series: [{
+            name: '销量',
+            type: 'line',
+            data:[30, 182, 434, 791, 390, 30, 10],
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ]
+            },
+            smooth:true
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
